@@ -1,0 +1,14 @@
+[
+    {
+        "id": "1",
+        "name": "Ayam Goreng",
+        "type": "Sewiwi",
+        "price": 7000
+    },
+    {
+        "id": "2",
+        "name": "Es Teh Manis",
+        "type": "usihuuleh",
+        "price": 2000
+    }
+]
