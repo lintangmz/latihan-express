@@ -16,7 +16,7 @@ app.use(logger)
 app.use(router)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static('src'))
+app.use(express.static('src/img'))
 
 
 app.get('/', (req, res) => res.render('index'))
@@ -72,7 +72,7 @@ app.post('/register', (req, res) => {
     res.json([email, password])
 })
 
-app.get('/limz.png', (req, res) => res.sendFile(path.join(__dirname, 'limz.png')))
+// app.get('/karya.png', (req, res) => res.sendFile(path.join(__dirname, 'karya.png')))
 
 app.get('/api/v1/foods', (req, res) => res.status(200).json(foodList))
 
@@ -88,7 +88,7 @@ app.get('/api/v1/foods/:id', (req, res) => {
 
 app.post('/api/v1/foods', (req, res) => {
     const { name, type, price } = req.body
-    const id = foodList.lenght + 1
+    const id = foodList.length + 1
 
     const food = {
         id,
@@ -134,6 +134,14 @@ const errorHandler = (err, req, res, next) => {
     })
 }
 
+const notFoundHandler = (req, res, next) => {
+    return res.status(404).json({
+        status: 'fail',
+        errors: "Not Found"
+    })
+}
+
 app.use(errorHandler)
+app.use(notFoundHandler)
 
 app.listen(port, () => console.log('Example app listening at http: ${port}'))
